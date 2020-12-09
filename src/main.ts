@@ -1,1 +1,3 @@
-export function entrypoint(): void {}
+export function doGet(): void {
+  Logger.log("HEY!");
+}
