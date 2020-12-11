@@ -9,8 +9,8 @@ export function doGet(
 
   if (payload.items) {
     const { items } = payload;
-    userData.cardId = items.cardId;
-    userData.passcode = items.passcode;
+    userData.cardId = items["cardId"];
+    userData.passcode = items["passcode"];
   }
 
   Logger.log(event.parameters);
