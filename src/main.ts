@@ -13,6 +13,10 @@ export function doGet(
     userData.passcode = items.passcode;
   }
 
+  Logger.log(event.parameters);
+  Logger.log(payload);
+  Logger.log(userData);
+
   return ContentService.createTextOutput(JSON.stringify(userData)).setMimeType(
     ContentService.MimeType.JSON
   );
