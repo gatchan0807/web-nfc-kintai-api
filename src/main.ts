@@ -2,16 +2,19 @@ export function doGet(
   event: GoogleAppsScript.Events.DoGet
 ): GoogleAppsScript.Content.TextOutput {
   const payload = event.parameter as Payload;
-  const userData = {
+  let userData = {
     cardId: "",
     passcode: "",
   };
 
-  if (payload.items) {
-    const { items } = payload;
-    userData.cardId = items["cardId"];
-    userData.passcode = items["passcode"];
+  if (!payload.items) {
+    return ContentService.createTextOutput(
+      JSON.stringify({ message: "Request has not payloads." })
+    ).setMimeType(ContentService.MimeType.JSON);
   }
+
+  const { items } = payload;
+  userData = items;
 
   Logger.log(event.parameters);
   Logger.log(payload);
