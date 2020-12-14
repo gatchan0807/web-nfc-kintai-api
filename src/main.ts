@@ -16,10 +16,6 @@ export function doGet(
   const { items } = payload;
   userData = items;
 
-  Logger.log(event.parameters);
-  Logger.log(payload);
-  Logger.log(userData);
-
   return ContentService.createTextOutput(JSON.stringify(userData)).setMimeType(
     ContentService.MimeType.JSON
   );
