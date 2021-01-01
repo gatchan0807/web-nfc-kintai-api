@@ -28,7 +28,8 @@ export function doGet(
   });
 
   Logger.log(result);
-  Logger.log(userData.cardId === userDataList[0].cardId);
+  Logger.log(userData.cardId);
+  Logger.log(userDataList[0].cardId);
 
   if (!result) {
     return ContentService.createTextOutput(
