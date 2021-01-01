@@ -24,11 +24,11 @@ export function doGet(
   const userDataList = getUserDataList(SPREAD_SHEET_ID);
 
   const result = userDataList.find((ud) => {
-    ud.cardId === userData.cardId;
+    ud.cardId === userData["cardId"];
   });
 
   Logger.log(userData);
-  Logger.log(userData.cardId);
+  Logger.log(userData["cardId"]);
   Logger.log(userDataList[0].cardId);
 
   if (!result) {
