@@ -29,7 +29,8 @@ export function doGet(
 
   Logger.log(userData);
   Logger.log(userData.cardId);
-  Logger.log(userDataList[0].cardId);
+  Logger.log(result);
+  Logger.log(userDataList[0].cardId === userData.cardId);
 
   if (!result) {
     return ContentService.createTextOutput(
