@@ -24,13 +24,8 @@ export function doGet(
   const userDataList = getUserDataList(SPREAD_SHEET_ID);
 
   const result = userDataList.find((ud) => {
-    ud.cardId === userData.cardId;
+    return ud.cardId === userData.cardId;
   });
-
-  Logger.log(userData);
-  Logger.log(userData.cardId);
-  Logger.log(result);
-  Logger.log(userDataList[0].cardId === userData.cardId);
 
   if (!result) {
     return ContentService.createTextOutput(
