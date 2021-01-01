@@ -28,6 +28,7 @@ export function doGet(
   });
 
   Logger.log(userData);
+  Logger.log(typeof userData);
   Logger.log(userData["cardId"]);
   Logger.log(userDataList[0].cardId);
 
