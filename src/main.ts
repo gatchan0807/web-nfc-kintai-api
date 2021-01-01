@@ -23,10 +23,20 @@ export function doGet(
   const mailTemplates = getMailTemplate(SPREAD_SHEET_ID);
   const userDataList = getUserDataList(SPREAD_SHEET_ID);
 
+  const result = userDataList.find((ud) => {
+    ud.cardId === userData.cardId;
+  });
+
+  if (!result) {
+    return ContentService.createTextOutput(
+      JSON.stringify({ message: "Used card is not registered." })
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
+
   Logger.log(mailTemplates);
   Logger.log(userDataList);
 
-  return ContentService.createTextOutput(JSON.stringify(userData)).setMimeType(
+  return ContentService.createTextOutput(JSON.stringify(result)).setMimeType(
     ContentService.MimeType.JSON
   );
 }

@@ -66,7 +66,7 @@ function formatUserDataList(rawValues: ResponsedAny[][]): UserDataList {
     return {
       cardId: rv[0],
       passcode: rv[1],
-      usedCount: parseInt(rv[2]),
+      usedCount: parseInt(rv[2]) | 0,
     };
   });
 }
