@@ -27,6 +27,9 @@ export function doGet(
     ud.cardId === userData.cardId;
   });
 
+  Logger.log(result);
+  Logger.log(userData.cardId === userDataList[0].cardId);
+
   if (!result) {
     return ContentService.createTextOutput(
       JSON.stringify({ message: "Used card is not registered." })
