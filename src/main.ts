@@ -27,7 +27,7 @@ export function doGet(
     ud.cardId === userData.cardId;
   });
 
-  Logger.log(result);
+  Logger.log(userData);
   Logger.log(userData.cardId);
   Logger.log(userDataList[0].cardId);
 
