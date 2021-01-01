@@ -18,18 +18,17 @@ export function doGet(
   }
 
   const { items } = payload;
-  userData = items;
+  userData = JSON.parse(items);
 
   const mailTemplates = getMailTemplate(SPREAD_SHEET_ID);
   const userDataList = getUserDataList(SPREAD_SHEET_ID);
 
   const result = userDataList.find((ud) => {
-    ud.cardId === userData["cardId"];
+    ud.cardId === userData.cardId;
   });
 
   Logger.log(userData);
-  Logger.log(typeof userData);
-  Logger.log(userData["cardId"]);
+  Logger.log(userData.cardId);
   Logger.log(userDataList[0].cardId);
 
   if (!result) {
@@ -47,8 +46,5 @@ export function doGet(
 }
 
 type Payload = {
-  items: {
-    cardId: string;
-    passcode: string;
-  };
+  items: string;
 };
