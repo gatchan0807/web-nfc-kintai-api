@@ -4,9 +4,9 @@ export function setDefaultTemplate(
   allTemplates: MailTemplateList
 ): MailTemplate | undefined {
   Logger.log(Utilities.formatDate(new Date(), "Asia/Tokyo", "HHmm"));
-  Logger.log(Utilities.formatDate(new Date(), "Asia/Tokyo", "HHmm") < "1000");
+  Logger.log(Utilities.formatDate(new Date(), "Asia/Tokyo", "HHmm") < "1400");
 
-  if (Utilities.formatDate(new Date(), "Asia/Tokyo", "HHmm") < "1000") {
+  if (Utilities.formatDate(new Date(), "Asia/Tokyo", "HHmm") < "1400") {
     return allTemplates.find((template) => {
       return template.timingId === "remote_work_start";
     });
