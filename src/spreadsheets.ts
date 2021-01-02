@@ -1,4 +1,4 @@
-import { MailTemplateList, UserDataList } from "./types";
+import { MailTemplateList, SendLog, UserDataList } from "./types";
 type ResponsedAny = any;
 
 /**
@@ -47,6 +47,38 @@ export function getUserDataList(
   return formatUserDataList(userDataValues);
 }
 
+/**
+ * 送信実行ログをSpreadSheetに記録する
+ *
+ * @param payload シートに登録するための
+ * @param spreadSheetId リマインド文言シートがあるSpreadSheetのID
+ * @param sheetName Sheetの名前。デフォルトで `UserData` を設定済み
+ */
+export function appendSendLog(
+  payload: SendLog,
+  spreadSheetId: string,
+  sheetName = "SendLog"
+): boolean {
+  const sendLogSheet = SpreadsheetApp.openById(spreadSheetId).getSheetByName(
+    sheetName
+  );
+
+  if (!sendLogSheet) return false;
+
+  // Timestampの更新
+  payload.timestamp = Utilities.formatDate(
+    new Date(),
+    "Asia/Tokyo",
+    "yyyy/MM/dd HH:mm"
+  );
+
+  if (sendLogSheet.appendRow(formatSendLogPayload(payload))) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 // ============ private functions ============
 
 function formatMailTemplateList(rawValues: ResponsedAny[][]): MailTemplateList {
@@ -69,4 +101,13 @@ function formatUserDataList(rawValues: ResponsedAny[][]): UserDataList {
       usedCount: parseInt(rv[2]) | 0,
     };
   });
+}
+
+function formatSendLogPayload(rawValues: SendLog): string[] {
+  return [
+    // String型に強制キャスト
+    rawValues.cardId + "",
+    rawValues.templateId + "",
+    rawValues.timestamp + "",
+  ];
 }
