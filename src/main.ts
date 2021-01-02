@@ -66,12 +66,19 @@ export function doGet(
   Logger.log(userDataList);
 
   // メールを送信
+  const toAddresses = mailTemplate.sendTargetMailAddress.join(",");
+  Logger.log(toAddresses);
+  MailApp.sendEmail({
+    to: toAddresses,
+    subject: mailPayload.title,
+    body: mailPayload.content,
+  });
 
   // 送信ログに記録
   const sendLogData = {
     cardId: userData.cardId,
-    templateId: "",
-    timestamp: "",
+    templateId: mailTemplate.timingId,
+    timestamp: "Not set",
   };
 
   appendSendLog(sendLogData, SPREAD_SHEET_ID);
