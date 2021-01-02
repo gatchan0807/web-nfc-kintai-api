@@ -23,6 +23,7 @@ export function doGet(
   }
 
   // 受け取ったCard IDが登録済みかチェック
+  // 受け取ったパスコードが登録されているものと一致するかチェック
   const { items } = payload;
   userData = JSON.parse(items);
 
@@ -31,7 +32,7 @@ export function doGet(
     return ud.cardId === userData.cardId;
   });
 
-  if (!searchResult) {
+  if (!searchResult || searchResult.passcode !== userData.passcode) {
     return ContentService.createTextOutput(
       JSON.stringify({ message: "Used card is not registered." })
     ).setMimeType(ContentService.MimeType.JSON);
