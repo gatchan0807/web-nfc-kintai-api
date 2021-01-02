@@ -1,4 +1,4 @@
-import { setDefaultTemplate } from "./mail";
+import { replacePlaceholderOfText, setDefaultTemplate } from "./mail";
 import {
   appendSendLog,
   getMailTemplate,
@@ -48,9 +48,21 @@ export function doGet(
   //   mailTemplate = setLateTemplate(allTemplates);
   // }
 
+  if (!mailTemplate) {
+    return ContentService.createTextOutput(
+      JSON.stringify({
+        message: "Sorry. We can't find a E-mail template from Registered List.",
+      })
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
+
   // プレースホルダーの置き換え
+  const mailPayload = { ...mailTemplate, title: "", content: "" };
+  mailPayload.title = replacePlaceholderOfText(mailTemplate.rawTitle);
+  mailPayload.content = replacePlaceholderOfText(mailTemplate.rawContent);
 
   Logger.log(mailTemplate);
+  Logger.log(mailPayload);
   Logger.log(userDataList);
 
   // メールを送信
