@@ -1,3 +1,4 @@
+import { setDefaultTemplate } from "./mail";
 import {
   appendSendLog,
   getMailTemplate,
@@ -37,15 +38,19 @@ export function doGet(
       JSON.stringify({ message: "Used card is not registered." })
     ).setMimeType(ContentService.MimeType.JSON);
   }
-  Logger.log(!searchResult || searchResult.passcode !== userData.passcode);
-  Logger.log(searchResult.passcode !== userData.passcode);
-  Logger.log(searchResult.passcode);
-  Logger.log(userData.passcode);
 
   // 使用するメールテンプレートを選択
-  const mailTemplates = getMailTemplate(SPREAD_SHEET_ID);
+  const allTemplates = getMailTemplate(SPREAD_SHEET_ID);
+  const mailTemplate = setDefaultTemplate(allTemplates);
 
-  Logger.log(mailTemplates);
+  // 遅刻の場合のテンプレート設定処理（WIP）
+  // if (userData.lateFlag) {
+  //   mailTemplate = setLateTemplate(allTemplates);
+  // }
+
+  // プレースホルダーの置き換え
+
+  Logger.log(mailTemplate);
   Logger.log(userDataList);
 
   // メールを送信

@@ -88,7 +88,7 @@ function formatMailTemplateList(rawValues: ResponsedAny[][]): MailTemplateList {
       rawTitle: rv[1],
       rawContent: rv[2],
       rawSendTargetMailAddress: rv[3],
-      sendTargetMailAddress: rv[3].split(","),
+      sendTargetMailAddress: rv[3].split("/"),
     };
   });
 }
@@ -98,7 +98,6 @@ function formatUserDataList(rawValues: ResponsedAny[][]): UserDataList {
     return {
       cardId: rv[0],
       passcode: rv[1],
-      usedCount: parseInt(rv[2]) | 0,
     };
   });
 }
