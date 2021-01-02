@@ -37,6 +37,10 @@ export function doGet(
       JSON.stringify({ message: "Used card is not registered." })
     ).setMimeType(ContentService.MimeType.JSON);
   }
+  Logger.log(!searchResult || searchResult.passcode !== userData.passcode);
+  Logger.log(searchResult.passcode !== userData.passcode);
+  Logger.log(searchResult.passcode);
+  Logger.log(userData.passcode);
 
   // 使用するメールテンプレートを選択
   const mailTemplates = getMailTemplate(SPREAD_SHEET_ID);
