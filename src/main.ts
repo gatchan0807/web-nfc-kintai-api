@@ -14,6 +14,7 @@ export function doGet(
   let userData = {
     cardId: "",
     passcode: "",
+    name: "",
   };
 
   // Card IDが受信できているかチェック
@@ -62,8 +63,14 @@ export function doGet(
 
   // プレースホルダーの置き換え
   const mailPayload = Object.assign(mailTemplate, { title: "", content: "" });
-  mailPayload.title = replacePlaceholderOfText(mailTemplate.rawTitle);
-  mailPayload.content = replacePlaceholderOfText(mailTemplate.rawContent);
+  mailPayload.title = replacePlaceholderOfText(
+    mailTemplate.rawTitle,
+    userData.name
+  );
+  mailPayload.content = replacePlaceholderOfText(
+    mailTemplate.rawContent,
+    userData.name
+  );
 
   // メールを送信
   const toAddresses = mailTemplate.sendTargetMailAddress.join(",");

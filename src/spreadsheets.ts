@@ -98,6 +98,7 @@ function formatUserDataList(rawValues: ResponsedAny[][]): UserDataList {
     return {
       cardId: rv[0],
       passcode: rv[1],
+      name: rv[2],
     };
   });
 }

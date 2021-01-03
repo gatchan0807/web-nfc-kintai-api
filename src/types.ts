@@ -1,6 +1,7 @@
 export interface UserData {
   cardId: string;
   passcode: string;
+  name: string;
 }
 
 export type UserDataList = UserData[];
