@@ -76,11 +76,11 @@ export function doGet(
     ).setMimeType(ContentService.MimeType.JSON);
   }
 
-  // MailApp.sendEmail({
-  //   to: toAddresses,
-  //   subject: mailPayload.title,
-  //   body: mailPayload.content,
-  // });
+  MailApp.sendEmail({
+    to: toAddresses,
+    subject: mailPayload.title,
+    body: mailPayload.content,
+  });
 
   // 送信ログに記録
   const sendLogData = {
