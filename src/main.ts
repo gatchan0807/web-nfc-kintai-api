@@ -19,7 +19,7 @@ export function doGet(
   // Card IDが受信できているかチェック
   if (!payload.items) {
     return ContentService.createTextOutput(
-      JSON.stringify({ message: "Request has not payloads." })
+      JSON.stringify({ message: "Request has not payloads.", statusCode: 400 })
     ).setMimeType(ContentService.MimeType.JSON);
   }
 
@@ -35,7 +35,10 @@ export function doGet(
 
   if (!searchResult || searchResult.passcode !== userData.passcode) {
     return ContentService.createTextOutput(
-      JSON.stringify({ message: "Used card is not registered." })
+      JSON.stringify({
+        message: "Used card is not registered.",
+        statusCode: 404,
+      })
     ).setMimeType(ContentService.MimeType.JSON);
   }
 
@@ -52,6 +55,7 @@ export function doGet(
     return ContentService.createTextOutput(
       JSON.stringify({
         message: "Sorry. We can't find a E-mail template from registered list.",
+        statusCode: 404,
       })
     ).setMimeType(ContentService.MimeType.JSON);
   }
@@ -67,6 +71,7 @@ export function doGet(
     return ContentService.createTextOutput(
       JSON.stringify({
         message: "We can't find of send target",
+        statusCode: 404,
       })
     ).setMimeType(ContentService.MimeType.JSON);
   }
@@ -88,7 +93,7 @@ export function doGet(
 
   // 送信完了情報を返却
   return ContentService.createTextOutput(
-    JSON.stringify(searchResult)
+    JSON.stringify({ message: "Success, Send E-mail.", statusCode: 200 })
   ).setMimeType(ContentService.MimeType.JSON);
 }
 
