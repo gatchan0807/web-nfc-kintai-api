@@ -3,11 +3,13 @@ import { MailTemplate, MailTemplateList } from "./types";
 export function setDefaultTemplate(
   allTemplates: MailTemplateList
 ): MailTemplate | undefined {
-  if (Utilities.formatDate(new Date(), "Asia/Tokyo", "HHmm") < "1859") {
+  const now = Utilities.formatDate(new Date(), "Asia/Tokyo", "HHmm");
+
+  if (now < "1000" && now > "0000") {
     return allTemplates.find((template) => {
       return template.timingId === "remote_work_start";
     });
-  } else if (Utilities.formatDate(new Date(), "Asia/Tokyo", "HHmm") > "1900") {
+  } else if (now > "1900" && now < "2359") {
     return allTemplates.find((template) => {
       return template.timingId === "remote_work_end";
     });

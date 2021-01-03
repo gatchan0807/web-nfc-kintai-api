@@ -14,7 +14,6 @@ export function doGet(
   let userData = {
     cardId: "",
     passcode: "",
-    name: "",
   };
 
   // Card IDが受信できているかチェック
@@ -65,11 +64,11 @@ export function doGet(
   const mailPayload = Object.assign(mailTemplate, { title: "", content: "" });
   mailPayload.title = replacePlaceholderOfText(
     mailTemplate.rawTitle,
-    userData.name
+    searchResult.name
   );
   mailPayload.content = replacePlaceholderOfText(
     mailTemplate.rawContent,
-    userData.name
+    searchResult.name
   );
 
   // メールを送信

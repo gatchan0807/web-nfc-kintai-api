@@ -50,7 +50,7 @@ export function getUserDataList(
 /**
  * 送信実行ログをSpreadSheetに記録する
  *
- * @param payload シートに登録するための
+ * @param payload シートに登録するためのデータがまとまったオブジェクト
  * @param spreadSheetId リマインド文言シートがあるSpreadSheetのID
  * @param sheetName Sheetの名前。デフォルトで `UserData` を設定済み
  */
