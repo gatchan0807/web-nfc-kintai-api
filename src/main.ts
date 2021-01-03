@@ -62,6 +62,7 @@ export function doGet(
 
   // プレースホルダーの置き換え
   const mailPayload = Object.assign(mailTemplate, { title: "", content: "" });
+  Logger.log(searchResult.name);
   mailPayload.title = replacePlaceholderOfText(
     mailTemplate.rawTitle,
     searchResult.name

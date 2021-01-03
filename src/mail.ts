@@ -22,6 +22,7 @@ export function replacePlaceholderOfText(
   rawText: string,
   name = "古賀"
 ): string {
+  Logger.log(name);
   let text = rawText;
 
   const today = Utilities.formatDate(new Date(), "Asia/Tokyo", "MM/dd");
