@@ -3,7 +3,7 @@ import { MailTemplate, MailTemplateList } from "./types";
 export function setDefaultTemplate(
   allTemplates: MailTemplateList
 ): MailTemplate | undefined {
-  if (Utilities.formatDate(new Date(), "Asia/Tokyo", "HHmm") < "1800") {
+  if (Utilities.formatDate(new Date(), "Asia/Tokyo", "HHmm") < "1000") {
     return allTemplates.find((template) => {
       return template.timingId === "remote_work_start";
     });

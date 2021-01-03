@@ -51,7 +51,7 @@ export function doGet(
   if (!mailTemplate) {
     return ContentService.createTextOutput(
       JSON.stringify({
-        message: "Sorry. We can't find a E-mail template from Registered List.",
+        message: "Sorry. We can't find a E-mail template from registered list.",
       })
     ).setMimeType(ContentService.MimeType.JSON);
   }
@@ -61,18 +61,21 @@ export function doGet(
   mailPayload.title = replacePlaceholderOfText(mailTemplate.rawTitle);
   mailPayload.content = replacePlaceholderOfText(mailTemplate.rawContent);
 
-  Logger.log(mailTemplate);
-  Logger.log(mailPayload);
-  Logger.log(userDataList);
-
   // メールを送信
   const toAddresses = mailTemplate.sendTargetMailAddress.join(",");
-  Logger.log(toAddresses);
-  MailApp.sendEmail({
-    to: toAddresses,
-    subject: mailPayload.title,
-    body: mailPayload.content,
-  });
+  if (toAddresses === "") {
+    return ContentService.createTextOutput(
+      JSON.stringify({
+        message: "We can't find of send target",
+      })
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
+
+  // MailApp.sendEmail({
+  //   to: toAddresses,
+  //   subject: mailPayload.title,
+  //   body: mailPayload.content,
+  // });
 
   // 送信ログに記録
   const sendLogData = {
