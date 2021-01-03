@@ -37,7 +37,7 @@ export function doGet(
     return ContentService.createTextOutput(
       JSON.stringify({
         message: "Used card is not registered.",
-        statusCode: 404,
+        statusCode: 401,
       })
     ).setMimeType(ContentService.MimeType.JSON);
   }
